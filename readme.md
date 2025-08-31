@@ -1,128 +1,160 @@
-ytmp3 — YouTube → MP3 (Lightweight CLI)
+# ytmp3 — YouTube → MP3 (Lightweight CLI)
 
-A tiny, cross-platform command-line tool that converts a YouTube link into an MP3 file using yt-dlp + FFmpeg. It’s fast, minimal, and easy to install without extra services.
+A tiny, cross-platform command-line tool that converts a YouTube link into an MP3 file using `yt-dlp` + FFmpeg. It’s fast, minimal, and easy to install without extra services.
 
-Legal: Only download audio you have the rights to (your own content, Creative Commons, or where permitted). You are responsible for complying with YouTube’s Terms of Service and local laws.
+> **Legal**: Only download audio you have the rights to (your own content, Creative Commons, or where permitted). You are responsible for complying with YouTube’s Terms of Service and local laws.
 
-Features
+---
 
-🎯 Simple: one command + a URL → MP3
+## Features
 
-⚡ Fast: uses yt-dlp with FFmpeg for reliable extraction & conversion
+* 🎯 **Simple**: one command + a URL → MP3
+* ⚡ **Fast**: uses `yt-dlp` with FFmpeg for reliable extraction & conversion
+* 🧰 **Portable**: just Python + the `yt-dlp` CLI
+* 🧪 **Scriptable**: batch convert multiple URLs or from a text file
+* 🧹 **Clean outputs**: filenames based on video title; choose bitrate
 
-🧰 Portable: just Python + the yt-dlp CLI
+---
 
-🧪 Scriptable: batch convert multiple URLs or from a text file
+## Prerequisites
 
-🧹 Clean outputs: filenames based on video title; choose bitrate
+* **Python** 3.9+ (Windows/macOS/Linux)
+* **FFmpeg** in your `PATH` (or set `FFMPEG_PATH` env var)
+* **yt-dlp** CLI installed via:
 
-Prerequisites
+  * macOS: `brew install yt-dlp`
+  * Linux: package manager or `pipx install yt-dlp`
+  * Windows: `winget install yt-dlp`
 
-Python 3.9+ (Windows/macOS/Linux)
+---
 
-FFmpeg in your PATH (or set FFMPEG_PATH env var)
+## Repository layout
 
-yt-dlp CLI installed via:
-
-macOS: brew install yt-dlp
-
-Linux: package manager or pipx install yt-dlp
-
-Windows: winget install yt-dlp
-
-Repository layout
+```
 .
 ├── ytmp3.py         # The CLI script
 └── README.md        # This file
+```
 
-Quick start
-macOS (Terminal)
+---
 
-Install dependencies (Homebrew):
+## Quick start
 
-brew install yt-dlp ffmpeg
+### macOS (Terminal)
 
+1. **Install dependencies** (Homebrew):
 
-Clone & cd:
+   ```bash
+   brew install yt-dlp ffmpeg
+   ```
 
-git clone https://github.com/<you>/ytmp3.git
-cd ytmp3
+2. **Clone & cd**:
 
+   ```bash
+   git clone https://github.com/<you>/ytmp3.git
+   cd ytmp3
+   ```
 
-Run:
+3. **Run**:
 
-python3 ytmp3.py "https://youtu.be/VIDEO_ID"
-# or choose output dir + bitrate
-python3 ytmp3.py --out ~/Music --bitrate 192 "https://www.youtube.com/watch?v=VIDEO_ID"
+   ```bash
+   python3 ytmp3.py "https://youtu.be/VIDEO_ID"
+   # or choose output dir + bitrate
+   python3 ytmp3.py --out ~/Music --bitrate 192 "https://www.youtube.com/watch?v=VIDEO_ID"
+   ```
 
-Linux (Terminal)
+---
 
-Install dependencies:
+### Linux (Terminal)
 
-# Ubuntu/Debian
-sudo apt update && sudo apt install -y ffmpeg yt-dlp python3
-# Fedora
-sudo dnf install -y ffmpeg yt-dlp
-# Arch
-sudo pacman -S --noconfirm ffmpeg yt-dlp
+1. **Install dependencies**:
 
+   ```bash
+   # Ubuntu/Debian
+   sudo apt update && sudo apt install -y ffmpeg yt-dlp python3
+   # Fedora
+   sudo dnf install -y ffmpeg yt-dlp
+   # Arch
+   sudo pacman -S --noconfirm ffmpeg yt-dlp
+   ```
 
-Clone & cd:
+2. **Clone & cd**:
 
-git clone https://github.com/<you>/ytmp3.git
-cd ytmp3
+   ```bash
+   git clone https://github.com/<you>/ytmp3.git
+   cd ytmp3
+   ```
 
+3. **Run**:
 
-Run:
+   ```bash
+   python3 ytmp3.py "https://www.youtube.com/watch?v=VIDEO_ID"
+   ```
 
-python3 ytmp3.py "https://www.youtube.com/watch?v=VIDEO_ID"
+---
 
-Windows — PowerShell
+### Windows — PowerShell
 
-Install dependencies:
+1. **Install dependencies**:
 
-winget install yt-dlp
-winget install Gyan.FFmpeg
+   ```powershell
+   winget install yt-dlp
+   winget install Gyan.FFmpeg
+   ```
 
+2. **Clone & cd**:
 
-Clone & cd:
+   ```powershell
+   git clone https://github.com/<you>/ytmp3.git
+   cd ytmp3
+   ```
 
-git clone https://github.com/<you>/ytmp3.git
-cd ytmp3
+3. **Run**:
 
+   ```powershell
+   python ytmp3.py "https://www.youtube.com/watch?v=VIDEO_ID"
+   ```
 
-Run:
+---
 
-python ytmp3.py "https://www.youtube.com/watch?v=VIDEO_ID"
+### Windows — Git Bash (MINGW64)
 
-Windows — Git Bash (MINGW64)
+1. **Check Python availability**:
 
-Check Python availability:
+   ```bash
+   python --version || py --version || python3 --version
+   ```
 
-python --version || py --version || python3 --version
+2. **Install FFmpeg**:
 
+   ```bash
+   winget.exe install --id=Gyan.FFmpeg -e
+   ```
 
-Install FFmpeg:
+3. **Install yt-dlp**:
 
-winget.exe install --id=Gyan.FFmpeg -e
+   ```bash
+   winget.exe install yt-dlp
+   ```
 
+4. **Clone & cd**:
 
-Install yt-dlp:
+   ```bash
+   git clone https://github.com/<you>/ytmp3.git
+   cd ytmp3
+   ```
 
-winget.exe install yt-dlp
+5. **Run**:
 
+   ```bash
+   python ytmp3.py 'https://www.youtube.com/watch?v=VIDEO_ID'
+   ```
 
-Clone & cd:
+---
 
-git clone https://github.com/<you>/ytmp3.git
-cd ytmp3
+## Usage
 
-
-Run:
-
-python ytmp3.py 'https://www.youtube.com/watch?v=VIDEO_ID'
-
-Usage
+```bash
 # Single link
 python ytmp3.py https://youtu.be/ID
 
@@ -137,58 +169,75 @@ python ytmp3.py --from-file links.txt --out ~/Music --bitrate 320
 
 # Verbose logs
 python ytmp3.py -v https://youtu.be/ID
+```
 
-CLI options
+### CLI options
 
---out, -o: output directory (default: current directory)
+* `--out, -o`: output directory (default: current directory)
+* `--bitrate, -b`: MP3 bitrate: `128`, `160`, `192`, `256`, `320` (default: `192`)
+* `--from-file, -f`: read URLs from a text file (one per line; `#` comments allowed)
+* `--verbose, -v`: show `yt-dlp` logs
 
---bitrate, -b: MP3 bitrate: 128, 160, 192, 256, 320 (default: 192)
+---
 
---from-file, -f: read URLs from a text file (one per line; # comments allowed)
+## Add a convenient alias
 
---verbose, -v: show yt-dlp logs
+### macOS / Linux
 
-Add a convenient alias
-macOS / Linux
+Add to `~/.zshrc` or `~/.bashrc`:
 
-Add to ~/.zshrc or ~/.bashrc:
-
+```bash
 alias ytmp3='python3 ~/path/to/ytmp3/ytmp3.py'
+```
 
-Windows PowerShell
+### Windows PowerShell
 
-Edit your $PROFILE:
+Edit your `$PROFILE`:
 
+```powershell
 function ytmp3 {
   python "C:\\path\\to\\ytmp3\\ytmp3.py" $args
 }
+```
 
-Keeping things up to date
+---
+
+## Keeping things up to date
 
 Update yt-dlp periodically:
 
+```bash
 brew upgrade yt-dlp     # macOS/Linux (Homebrew)
 winget upgrade yt-dlp   # Windows
 pipx upgrade yt-dlp     # If installed via pipx
+```
 
-Troubleshooting
+---
 
-yt-dlp: command not found
+## Troubleshooting
+
+**`yt-dlp: command not found`**
 → Ensure it’s installed via Homebrew, winget, or pipx and in your PATH.
 
-ffmpeg: command not found
-→ Install FFmpeg and ensure it’s in PATH (ffmpeg -version should print info).
+**`ffmpeg: command not found`**
+→ Install FFmpeg and ensure it’s in PATH (`ffmpeg -version` should print info).
 
-Quoting in Bash
+**Quoting in Bash**
 → Use single quotes or escape special chars:
 
+```bash
 python ytmp3.py 'https://www.youtube.com/watch?v=ID'
+```
 
-FAQ
+---
 
-Can I still use pip install yt-dlp?
-Yes, but this project now uses the yt-dlp CLI directly, which is simpler and avoids Python packaging issues.
+## FAQ
 
-License
+**Can I still use pip install yt-dlp?**
+Yes, but this project now uses the `yt-dlp` CLI directly, which is simpler and avoids Python packaging issues.
+
+---
+
+## License
 
 MIT (or your preferred license).
